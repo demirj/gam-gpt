@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello GPT</title>
+    <style>
+      .block {
+        border: 1px solid;
+        padding: 0px;
+        margin: 0px;
+        height: 1000px;
+      }
+
+      #banner-ad {
+        position: fixed;
+        border: 5px solid red;
+      }
+    </style>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || {cmd: []};
+      googletag.cmd.push(function() {
+        googletag
+            .defineSlot(
+                '/6355419/Travel/Europe', [300, 250], 'banner-ad')
+            .addService(googletag.pubads());
+        googletag.enableServices();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Refresh auf Basis der Scroll-Tiefe</h1>
+    <div class="block">
+    <h2>Div 1</h2>
+    <div id="banner-ad" style="width: 300px; height: 250px;">
+      <script>
+        googletag.cmd.push(function() {
+          googletag.display('banner-ad');
+        });
+      </script>
+    </div>
+    </div>
+    <div class="block">
+      <h2>Div 2</h2>
+    </div>
+    <div class="block">
+      <h2>Div 3</h2>
+    </div>
+    <div class="block">
+      <h2>Div 4</h2>
+    </div>
+    <div class="block">
+      <h2>Div 5</h2>
+    </div>
+    
+    <script>
+
+  let ap;
+  let adRefreshTrigger = 50;
+
+  function getScrollPercent() {
+    var r = document.documentElement, 
+        b = document.body,
+        st = 'scrollTop',
+        sh = 'scrollHeight';
+        return (r[st]||b[st]) / ((r[sh]||b[sh]) - r.clientHeight) * 100;
+  };
+
+  function refreshAd() {
+    ap = getScrollPercent();
+
+    if (ap >= adRefreshTrigger) {
+      googletag.cmd.push(function() {
+        googletag.pubads().refresh();
+    });
+
+    console.log("Ad refreshed");
+    window.onscroll = null;
+       
+    }
+  }
+
+  window.onscroll = function(){
+
+    refreshAd();
+
+  };
+</script>
+    
+  </body>
+</html>
